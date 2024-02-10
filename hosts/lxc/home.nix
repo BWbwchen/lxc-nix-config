@@ -4,6 +4,7 @@
   imports = [
     ../../modules/git
     ../../modules/tmux
+    ../../modules/emacs
     ../../modules/zsh.nix
   ];
 
@@ -54,6 +55,13 @@
     # system call monitoring
     strace # system call monitoring
     ltrace # library call monitoring
+
+    python3
+    nixfmt
+    gnumake
+    gdb
+    cmake
+    clang-tools_15
   ];
 
 }
