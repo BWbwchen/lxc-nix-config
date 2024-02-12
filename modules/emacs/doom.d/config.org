@@ -4,16 +4,16 @@
 (setq user-full-name "Bo-Wei Chen"
       user-mail-address "tim.chenbw@gmail.com")
 
-(setq doom-font (font-spec :family "Monaco" :size 20 :weight 'normal)
-      doom-variable-pitch-font (font-spec :family "Monaco" :size 18))
+;; (setq doom-font (font-spec :family "Monaco" :size 20 :weight 'normal)
+;;       doom-variable-pitch-font (font-spec :family "Monaco" :size 18))
 #+end_src
 
 * UI
 ** font
 #+begin_src emacs-lisp
-(custom-set-faces!
-  '(mode-line :family "Monaco" :height 0.9)
-  '(mode-line-inactive :family "Monaco" :height 0.95))
+;; (custom-set-faces!
+;;   '(mode-line :family "Monaco" :height 0.9)
+;;   '(mode-line-inactive :family "Monaco" :height 0.95))
 (custom-set-faces
   '(default ((t (:background "#000000"))))
   '(hl-line ((t (:background "#333333"))))

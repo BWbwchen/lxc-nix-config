@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-unstable, user, version, ... }:
 
 {
   imports = [
@@ -8,21 +8,20 @@
     ../../modules/zsh.nix
   ];
 
-  home = {
-    username = "bw";
-    homeDirectory = "/home/bw";
-    stateVersion = "23.11";
-    sessionPath =
-      [ "$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/.emacs.d/bin" ];
-  };
-
   programs.home-manager.enable = true;
-  programs.direnv.enable = true;
   programs.zsh = {
     enable = true;
     initExtra = ''
       export PATH=$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.emacs.d/bin:$PATH
     '';
+  };
+
+  home = {
+    username = user;
+    homeDirectory = "/home/${user}";
+    stateVersion = version;
+    sessionPath =
+      [ "$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/.emacs.d/bin" ];
   };
 
   home.packages = with pkgs; [
@@ -49,6 +48,7 @@
     tree
     gnutar
     gnupg
+    duf
 
     htop
 
@@ -62,6 +62,11 @@
     gdb
     cmake
     clang-tools_15
+
+    man-pages
+    man-pages-posix
+    linux-manual
+    stdmanpages
   ];
 
 }

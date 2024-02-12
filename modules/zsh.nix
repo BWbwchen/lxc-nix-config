@@ -16,7 +16,7 @@
       };
 
       shellAliases = {
-        vim = "lvim";
+        # vim = "lvim";
         df = "duf";
       };
     };

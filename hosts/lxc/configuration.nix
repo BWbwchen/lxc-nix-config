@@ -1,39 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-unstable, user, version, ... }:
 
 {
   imports = [
     <nixpkgs/nixos/modules/virtualisation/lxc-container.nix>
+    ../../sys-modules/prelude.nix # some necassary package and settings.
+    ./system.nix # some system wide settings.
+    ./programs.nix # some programs.
+    ./service.nix # some system services.
   ];
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nixpkgs.config.allowUnfree = true;
-
-  environment.variables.EDITOR = "vim";
-  environment.systemPackages = with pkgs; [
-    vim
-    curl
-    wget
-  ];
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    settings = {
-      X11Forwarding = true;
-      PermitRootLogin = "no"; # disable root login
-      PasswordAuthentication = true; # enable password login
-    };
-    openFirewall = true;
-  };
-
-  programs.zsh.enable = true;
-  users.users.bw = {
-    isNormalUser = true;
-    description = "Tim";
-    extraGroups = [ "networkmanager" "wheel" ];
-    password = "bw";
-    shell = pkgs.zsh;
-  };
-
-  system.stateVersion = "23.11";
 }
