@@ -19,16 +19,18 @@
       user = "bw";
       system = "x86_64-linux";
       version = "23.11";
+      pkgs-config = {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      pkgs = import nixpkgs pkgs-config;
     in {
       nixosConfigurations = {
         lxc = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
-            pkgs-unstable = import nixpkgs-unstable {
-              inherit system;
-              config.allowUnfree = true;
-            };
-            inherit user version;
+            pkgs-unstable = import nixpkgs-unstable pkgs-config;
+            inherit user version pkgs;
           };
           modules = [
             ./hosts/lxc/configuration.nix
@@ -39,7 +41,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.${user} = import ./hosts/lxc/home.nix;
-                extraSpecialArgs = { inherit user version; };
+                extraSpecialArgs = { inherit user version pkgs; };
               };
             }
           ];
