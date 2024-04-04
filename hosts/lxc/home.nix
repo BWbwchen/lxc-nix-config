@@ -4,7 +4,7 @@
   imports = [
     ../../modules/git
     ../../modules/tmux
-    ../../modules/emacs
+    # ../../modules/emacs
     ../../modules/zsh.nix
   ];
 
